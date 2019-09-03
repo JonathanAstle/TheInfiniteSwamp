@@ -1,22 +1,24 @@
-package com.qa.assessment;
+package com.qa.infiniteswamp;
 
 public class Player {
 	private String name;
-	private double playerXCoordinate;
-	private double playerYCoordinate;
+	private int playerXCoordinate;
+	private int playerYCoordinate;
 	
 	public Player(String name, int gridSideLength) {
-		double randomNumber1 = Math.random()*gridSideLength;
-		double randomNumber2 = Math.random()*gridSideLength;
-		double randomX = randomNumber1 - randomNumber1%1;
-		double randomY = randomNumber2 - randomNumber2%1;
+		int randomX = (int)(Math.random()*(gridSideLength));
+		int randomY = (int)(Math.random()*(gridSideLength));
 		
 		this.name = name;
 		this.playerXCoordinate = randomX; //Make this a random number between 0 and gridSizeLength
-		this.playerYCoordinate = randomX; //Make this a random number between 0 and gridSizeLength
+		this.playerYCoordinate = randomY; //Make this a random number between 0 and gridSizeLength
 	}
 	
-	public double getPlayerXCoordinate() {
+	public String getname() {
+		return this.name;
+	}
+	
+	public int getPlayerXCoordinate() {
 		return playerXCoordinate;
 	}
 	
@@ -24,7 +26,7 @@ public class Player {
 		this.playerXCoordinate = playerXCoordinate;
 	}
 	
-	public double getPlayerYCoordinate() {
+	public int getPlayerYCoordinate() {
 		return playerYCoordinate;
 	}
 	
@@ -34,14 +36,15 @@ public class Player {
 	
 	public void travel(String direction) {
 		if (direction.equals("north")) {
-			this.playerYCoordinate += 1;
+			this.playerYCoordinate -= 1;
 		} else if (direction.equals("east")) {
 			this.playerXCoordinate += 1;
 		} else if (direction.equals("south")) {
-			this.playerYCoordinate -= 1;
+			this.playerYCoordinate += 1;
 		} else if (direction.equals("west")) {
 			this.playerXCoordinate -= 1;
 		} else {
+			//comment this out later
 			System.out.println("This should never have happened. travel() should only accept north east south west");
 		}
 	}
